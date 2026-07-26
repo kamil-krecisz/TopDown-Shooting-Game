@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dcwwarg6dlx8e"]
+
+[ext_resource type="PackedScene" uid="uid://dq1gy3mrguy0p" path="res://player.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://dfp45ljucdgnv" path="res://main.gd" id="1_uu6xs"]
+
+[node name="Main" type="Node2D" unique_id=1941816599]
+script = ExtResource("1_uu6xs")
+
+[node name="Player" parent="." unique_id=708830804 instance=ExtResource("1_glv2v")]
+position = Vector2(455, 326)
+
+[node name="Muzzle" type="Node2D" parent="Player" unique_id=1131494565]
+position = Vector2(19, 0)
