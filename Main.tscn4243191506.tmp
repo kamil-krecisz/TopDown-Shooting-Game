@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dq1gy3mrguy0p" path="res://player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dfp45ljucdgnv" path="res://main.gd" id="1_uu6xs"]
+[ext_resource type="Script" uid="uid://bu7l6j82yy1hk" path="res://stamina_bar.gd" id="3_r0du0"]
 
 [node name="Main" type="Node2D" unique_id=1941816599]
 script = ExtResource("1_uu6xs")
@@ -10,4 +11,14 @@ script = ExtResource("1_uu6xs")
 position = Vector2(455, 326)
 
 [node name="Muzzle" type="Node2D" parent="Player" unique_id=1131494565]
-position = Vector2(19, 0)
+position = Vector2(23, 0)
+
+[node name="StaminaBar" type="ProgressBar" parent="." unique_id=554828100]
+modulate = Color(0.31088153, 0.99537, 0, 1)
+offset_left = 70.0
+offset_top = 38.0
+offset_right = 305.0
+offset_bottom = 65.0
+value = 50.0
+show_percentage = false
+script = ExtResource("3_r0du0")
