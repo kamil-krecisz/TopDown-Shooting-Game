@@ -1,11 +1,40 @@
 [gd_scene format=3 uid="uid://dcwwarg6dlx8e"]
 
 [ext_resource type="Script" uid="uid://dfp45ljucdgnv" path="res://Scripts/main.gd" id="1_kln2b"]
+[ext_resource type="Script" uid="uid://bcbji3ymhh0yk" path="res://Scripts/screen_canvas.gd" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dq1gy3mrguy0p" path="res://Scenes/player.tscn" id="2_rgh2o"]
-[ext_resource type="Script" uid="uid://bu7l6j82yy1hk" path="res://Scripts/stamina_bar.gd" id="3_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://qg0mt48njdla" path="res://Scenes/enemy.tscn" id="4_rgh2o"]
 
 [node name="Main" type="Node2D" unique_id=1941816599]
 script = ExtResource("1_kln2b")
+
+[node name="ScreenCanvas" type="CanvasLayer" parent="." unique_id=975740405]
+script = ExtResource("2_pbw6q")
+
+[node name="StaminaBar" type="ProgressBar" parent="ScreenCanvas" unique_id=554828100]
+modulate = Color(0.3499999, 1, 0, 1)
+offset_left = 21.0
+offset_top = 38.0
+offset_right = 251.0
+offset_bottom = 58.0
+value = 50.0
+show_percentage = false
+
+[node name="StaminaLabel" type="Label" parent="ScreenCanvas/StaminaBar" unique_id=1272712230]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 64.0
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Stamina"
+
+[node name="MoneyLabel" type="Label" parent="ScreenCanvas" unique_id=77616062]
+offset_left = 21.0
+offset_top = 76.0
+offset_right = 92.0
+offset_bottom = 99.0
+text = "Money: 0"
 
 [node name="Player" parent="." unique_id=708830804 instance=ExtResource("2_rgh2o")]
 position = Vector2(455, 326)
@@ -13,14 +42,9 @@ position = Vector2(455, 326)
 [node name="Muzzle" type="Node2D" parent="Player" unique_id=1131494565]
 position = Vector2(23, 0)
 
-[node name="StaminaBar" type="ProgressBar" parent="." unique_id=554828100]
-modulate = Color(0.31088153, 0.99537, 0, 1)
-offset_left = 27.0
-offset_top = 19.0
-offset_right = 212.0
-offset_bottom = 32.0
-value = 50.0
-show_percentage = false
-script = ExtResource("3_pbw6q")
+[node name="Enemy" parent="." unique_id=1528413759 groups=["enemy"] instance=ExtResource("4_rgh2o")]
+position = Vector2(795, 317)
 
-[connection signal="stamina_change" from="Player" to="StaminaBar" method="_on_player_stamina_change"]
+[connection signal="stamina_change" from="Player" to="ScreenCanvas" method="_on_player_stamina_change"]
+[connection signal="stamina_change" from="Player" to="ScreenCanvas/StaminaBar" method="_on_player_stamina_change"]
+[connection signal="on_death" from="Enemy" to="ScreenCanvas" method="_on_enemy_death"]

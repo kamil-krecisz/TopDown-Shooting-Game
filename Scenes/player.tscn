@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dq1gy3mrguy0p"]
 
 [ext_resource type="Script" uid="uid://cv3oqsd8a5062" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://ckoj3k8l55nqe" path="res://icon.svg" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://ckoj3k8l55nqe" path="res://Sprites/icon.svg" id="2_6t5aa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fu8ta"]
-radius = 16.124516
+radius = 15.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1170544757]
+[node name="Player" type="CharacterBody2D" unique_id=1170544757 groups=["player"]]
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=510316286]

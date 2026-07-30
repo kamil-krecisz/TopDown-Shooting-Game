@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://caagganw5wj61"]
 
 [ext_resource type="Script" uid="uid://sjb3wwp86gwf" path="res://Scripts/bullet.gd" id="1_oduel"]
-[ext_resource type="Texture2D" uid="uid://ckoj3k8l55nqe" path="res://Sprites/icon.svg" id="2_ycag2"]
+[ext_resource type="Texture2D" uid="uid://ckoj3k8l55nqe" path="res://icon.svg" id="2_ycag2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fu8ta"]
 radius = 3.0
@@ -19,8 +19,4 @@ texture = ExtResource("2_ycag2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1016862462]
 shape = SubResource("CapsuleShape2D_fu8ta")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2026375610]
-rect = Rect2(-3, -4, 6, 8)
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

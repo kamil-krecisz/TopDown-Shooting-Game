@@ -25,11 +25,13 @@ func _physics_process(delta):
 	character_direction = character_direction.normalized()
 	
 	if Input.is_action_pressed("Shift_down") and can_sprint == true:
-		stamina -= 15 * delta
+		if character_direction != Vector2.ZERO:
+			stamina -= 15 * delta
 		sprint_value = 1.75
 		if stamina <= 0.5:
 			sprint_value = 1
 			can_sprint = false
+			
 	else:
 		sprint_value = 1
 		stamina += 10 * delta
