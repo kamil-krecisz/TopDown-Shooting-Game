@@ -6,14 +6,20 @@ var player
 var direction
 var speed = 6500.0
 var health = 100
-var worth = 100
+@export var worth = 100
 
 signal on_death(value)
 
+func initialize(starting_position):
+	position = starting_position
+	
+
+
+
 
 func _ready():
+	
 	player = get_tree().get_first_node_in_group("player")
-	print(player)
 	
 func _physics_process(delta):
 	health_bar.value = health
@@ -22,6 +28,7 @@ func _physics_process(delta):
 	if health == 0:
 		on_death.emit(worth)
 		queue_free()
+
 	
 	
 	direction = player.global_position - global_position

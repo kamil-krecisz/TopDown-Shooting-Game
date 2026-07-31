@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_rgh2o"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1125, 10, 0, 0, 0, 0, 1125, 600)
+"points": PackedVector2Array(0, 0, 0, 0, 1125, 184, 0, 0, 0, 0, 1125, 600)
 }
 point_count = 2
 
@@ -55,7 +55,7 @@ position = Vector2(795, 317)
 curve = SubResource("Curve2D_rgh2o")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath" unique_id=2102966019]
-position = Vector2(1125, 10)
+position = Vector2(1125, 184)
 rotation = 1.5707964
 
 [node name="MobSpawnTimer" type="Timer" parent="." unique_id=595328825]
