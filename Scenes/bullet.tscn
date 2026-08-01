@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://caagganw5wj61"]
 
 [ext_resource type="Script" uid="uid://sjb3wwp86gwf" path="res://Scripts/bullet.gd" id="1_oduel"]
-[ext_resource type="Texture2D" uid="uid://ckoj3k8l55nqe" path="res://Sprites/icon.svg" id="2_ycag2"]
+[ext_resource type="Texture2D" uid="uid://cata3tsrc1t5f" path="res://Sprites/bullet.png" id="2_oduel"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fu8ta"]
 radius = 3.0
-height = 8.0
+height = 6.0
 
 [node name="Bullet" type="CharacterBody2D" unique_id=157301056]
 script = ExtResource("1_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1605102798]
-scale = Vector2(0.03125, 0.05)
-texture = ExtResource("2_ycag2")
+texture_filter = 1
+position = Vector2(-2.3841858e-07, 4.172325e-07)
+scale = Vector2(0.18750003, 0.1875)
+texture = ExtResource("2_oduel")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=104832196]
 
@@ -20,7 +22,7 @@ texture = ExtResource("2_ycag2")
 shape = SubResource("CapsuleShape2D_fu8ta")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2026375610]
-rect = Rect2(-3, -4, 6, 8)
+rect = Rect2(-3, -2, 6, 4)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

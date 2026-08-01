@@ -8,6 +8,8 @@ var speed = 6500.0
 var health = 100
 @export var worth = 100
 
+var can_attack = true
+
 signal on_death(value)
 
 func initialize(starting_position):
@@ -35,3 +37,19 @@ func _physics_process(delta):
 	velocity = direction.normalized() * delta * speed
 	
 	move_and_slide()
+
+
+func _on_attack_body_entered(body):
+	if body.is_in_group("player") && can_attack == true:
+		attack(body)
+	elif body.is_in_group("player") && can_attack == false:
+		can_attack = true
+func attack(body):
+	body.health -= 5
+	await get_tree().create_timer(2).timeout
+	_on_attack_body_entered(body)
+
+
+func _on_attack_body_exited(body):
+	if body.is_in_group("player"):
+		can_attack = false

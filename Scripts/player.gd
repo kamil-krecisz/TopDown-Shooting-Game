@@ -7,17 +7,32 @@ var mouse_position: Vector2
 @export var speed = 20000.0
 
 @export var stamina = 100.0
+@export var health = 100.0
+var health_regeneration = 1.5
 var sprint_value = 1
 var can_sprint = true
 signal stamina_change(new_stamina_value)
+signal health_change(new_health_value)
+
 @export var stamina_bar_max = 100
 
 @export var deceleration = 25.0
 var character_direction: Vector2
 var b
 
+func _ready():
+	health_change.emit(health)
+
+
+
 func _physics_process(delta):
-	
+	if health < 100:
+		health_change.emit(health)
+		health += health_regeneration * delta
+	if health <= 0:
+		get_tree().quit()
+		queue_free()
+	health = clampf(health, 0 , 100)
 	mouse_position = get_global_mouse_position() - global_position
 	rotation = mouse_position.angle()
 	character_direction.y = Input.get_axis("W_down","S_down")

@@ -6,6 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mayyj"]
 radius = 15.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fu8ta"]
+radius = 18.027756
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1528413759]
 script = ExtResource("1_1f0kj")
 
@@ -28,3 +31,14 @@ offset_right = 13.0
 offset_bottom = -19.0
 value = 50.0
 show_percentage = false
+
+[node name="AttackRange" type="Area2D" parent="." unique_id=1361335141]
+
+[node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange" unique_id=933063922]
+shape = SubResource("CircleShape2D_fu8ta")
+debug_color = Color(0.75417024, 0.18620193, 0.42151955, 0.15686275)
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=199059807]
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_body_exited"]
