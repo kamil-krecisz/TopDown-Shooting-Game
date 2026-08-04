@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://dfp45ljucdgnv" path="res://Scripts/main.gd" id="1_kln2b"]
 [ext_resource type="Script" uid="uid://bcbji3ymhh0yk" path="res://Scripts/screen_canvas.gd" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dq1gy3mrguy0p" path="res://Scenes/player.tscn" id="2_rgh2o"]
+[ext_resource type="Script" uid="uid://dvcmuscfrraou" path="res://Scripts/camera_2d.gd" id="2_v1gob"]
 [ext_resource type="PackedScene" uid="uid://qg0mt48njdla" path="res://Scenes/enemy.tscn" id="4_rgh2o"]
+[ext_resource type="FontFile" uid="uid://d22lpv7e76hh4" path="res://Fonts/upheavtt.ttf" id="4_v1gob"]
 
 [sub_resource type="Curve2D" id="Curve2D_rgh2o"]
 _data = {
@@ -13,6 +15,10 @@ point_count = 2
 
 [node name="Main" type="Node2D" unique_id=1941816599]
 script = ExtResource("1_kln2b")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1522785518]
+position = Vector2(576, 324)
+script = ExtResource("2_v1gob")
 
 [node name="ScreenCanvas" type="CanvasLayer" parent="." unique_id=975740405]
 script = ExtResource("2_pbw6q")
@@ -27,10 +33,13 @@ value = 50.0
 show_percentage = false
 
 [node name="MoneyLabel" type="Label" parent="ScreenCanvas" unique_id=77616062]
+texture_filter = 1
 offset_left = 21.0
-offset_top = 4.0
-offset_right = 92.0
-offset_bottom = 27.0
+offset_top = 6.0
+offset_right = 151.0
+offset_bottom = 37.0
+theme_override_fonts/font = ExtResource("4_v1gob")
+theme_override_font_sizes/font_size = 26
 text = "Money: 0"
 
 [node name="HealthBar" type="ProgressBar" parent="ScreenCanvas" unique_id=166043991]
@@ -65,5 +74,6 @@ autostart = true
 [connection signal="health_change" from="Player" to="ScreenCanvas" method="_on_player_health_change"]
 [connection signal="stamina_change" from="Player" to="ScreenCanvas" method="_on_player_stamina_change"]
 [connection signal="stamina_change" from="Player" to="ScreenCanvas/StaminaBar" method="_on_player_stamina_change"]
+[connection signal="taking_damage_shake" from="Player" to="Camera2D" method="_on_player_taking_damage"]
 [connection signal="on_death" from="Enemy" to="ScreenCanvas" method="_on_enemy_death"]
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

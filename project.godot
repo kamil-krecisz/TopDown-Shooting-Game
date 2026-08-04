@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ProjectGame"
-run/main_scene="uid://dcwwarg6dlx8e"
+run/main_scene="uid://b20ekxw0kyyhi"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 

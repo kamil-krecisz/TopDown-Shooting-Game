@@ -13,12 +13,19 @@ var sprint_value = 1
 var can_sprint = true
 signal stamina_change(new_stamina_value)
 signal health_change(new_health_value)
+signal taking_damage_shake()
 
 @export var stamina_bar_max = 100
 
 @export var deceleration = 25.0
 var character_direction: Vector2
 var b
+
+func take_damage(value):
+	taking_damage_shake.emit()
+	health -= value
+	$AudioStreamPlayer2D.play()
+
 
 func _ready():
 	health_change.emit(health)
