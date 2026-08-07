@@ -34,6 +34,7 @@ value = 50.0
 show_percentage = false
 
 [node name="MoneyLabel" type="Label" parent="ScreenCanvas" unique_id=77616062]
+process_mode = 3
 texture_filter = 1
 offset_left = 21.0
 offset_top = 6.0
@@ -53,6 +54,19 @@ value = 50.0
 show_percentage = false
 
 [node name="pause_menu" parent="ScreenCanvas" unique_id=1636271020 instance=ExtResource("7_jw32o")]
+
+[node name="TimeLeftBar" type="ProgressBar" parent="ScreenCanvas" unique_id=1184410977]
+visible = false
+modulate = Color(0.83116144, 0.69958246, 0.05545216, 1)
+offset_left = 321.0
+offset_top = 34.0
+offset_right = 551.0
+offset_bottom = 54.0
+value = 50.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="ScreenCanvas/TimeLeftBar" unique_id=1916328970]
+one_shot = true
 
 [node name="Player" parent="." unique_id=708830804 instance=ExtResource("2_rgh2o")]
 position = Vector2(455, 326)
@@ -74,6 +88,8 @@ rotation = 1.5707964
 wait_time = 3.0
 autostart = true
 
+[connection signal="upgrade_bought" from="ScreenCanvas/pause_menu" to="ScreenCanvas" method="_on_pause_menu_upgrade_bought"]
+[connection signal="upgrade_bought" from="ScreenCanvas/pause_menu" to="Player" method="_on_pause_menu_upgrade_bought"]
 [connection signal="health_change" from="Player" to="ScreenCanvas" method="_on_player_health_change"]
 [connection signal="stamina_change" from="Player" to="ScreenCanvas" method="_on_player_stamina_change"]
 [connection signal="stamina_change" from="Player" to="ScreenCanvas/StaminaBar" method="_on_player_stamina_change"]

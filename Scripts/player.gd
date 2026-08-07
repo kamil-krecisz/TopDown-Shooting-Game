@@ -5,6 +5,7 @@ extends CharacterBody2D
 var Bullet = preload("res://Scenes/bullet.tscn")
 var mouse_position: Vector2
 @export var speed = 20000.0
+var upgraded_speed = 1
 
 @export var stamina = 100.0
 @export var health = 100.0
@@ -63,7 +64,7 @@ func _physics_process(delta):
 	stamina = clampf(stamina, 0, stamina_bar_max)
 	stamina_change.emit(stamina)
 	if character_direction != Vector2.ZERO:
-		velocity = character_direction * speed * delta * sprint_value
+		velocity = character_direction * speed * delta * sprint_value * upgraded_speed
 		
 	if Input.is_action_just_pressed("left_down"): #SHOOTING
 		b = Bullet.instantiate()
@@ -78,3 +79,14 @@ func _physics_process(delta):
 	
 	velocity = velocity.lerp(Vector2.ZERO, deceleration * delta)
 	move_and_slide()
+
+
+func _on_pause_menu_upgrade_bought(_cost: int, upgrade_strength: float, time):
+	$UpgradeTimer.wait_time = time
+	upgraded_speed = upgrade_strength
+	$UpgradeTimer.start()
+
+
+func _on_upgrade_timer_timeout():
+	print("end")
+	upgraded_speed = 1
