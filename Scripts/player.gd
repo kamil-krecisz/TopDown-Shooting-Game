@@ -34,13 +34,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	if health < 100:
-		health_change.emit(health)
-		health += health_regeneration * delta
-	if health <= 0:
-		get_tree().quit()
-		queue_free()
-	health = clampf(health, 0 , 100)
 	mouse_position = get_global_mouse_position() - global_position
 	rotation = mouse_position.angle()
 	character_direction.y = Input.get_axis("W_down","S_down")
@@ -79,6 +72,15 @@ func _physics_process(delta):
 	
 	velocity = velocity.lerp(Vector2.ZERO, deceleration * delta)
 	move_and_slide()
+	
+	# I wrote this at the end of the function because errors were popping up that didn't make sense.
+	if health < 100:
+		health_change.emit(health)
+		health += health_regeneration * delta
+	if health <= 0:
+		queue_free()
+		get_tree().change_scene_to_file("res://Scenes/game_over_screen.tscn")
+	health = clampf(health, 0 , 100)
 
 
 func _on_pause_menu_upgrade_bought(_cost: int, upgrade_strength: float, time):

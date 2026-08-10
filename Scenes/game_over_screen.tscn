@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dqpo4mty1rssl"]
+
+[ext_resource type="Script" uid="uid://dj1weoubgdjqf" path="res://Scripts/game_over_screen.gd" id="1_e5yba"]
+[ext_resource type="FontFile" uid="uid://d22lpv7e76hh4" path="res://Fonts/upheavtt.ttf" id="1_jb6in"]
+[ext_resource type="Texture2D" uid="uid://by5ibxtfyqtqb" path="res://Sprites/normal.png" id="2_kk8k2"]
+[ext_resource type="Texture2D" uid="uid://d2rgytaer75hx" path="res://Sprites/pressed.png" id="3_e5yba"]
+[ext_resource type="Texture2D" uid="uid://sfdaxgaf5cmr" path="res://Sprites/hover.png" id="4_ladg1"]
+[ext_resource type="AudioStream" uid="uid://d1q5eqg033akv" path="res://Sounds/click_sound.wav" id="6_ladg1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wydum"]
+bg_color = Color(0.2123048, 0.21230489, 0.21230471, 1)
+
+[node name="game_over_screen" type="Node2D" unique_id=15839765]
+script = ExtResource("1_e5yba")
+
+[node name="Panel" type="Panel" parent="." unique_id=487213183]
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wydum")
+
+[node name="GameOverLabel" type="Label" parent="." unique_id=2033979214]
+texture_filter = 1
+offset_left = 313.0
+offset_top = 206.0
+offset_right = 839.0
+offset_bottom = 296.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.15686275)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("1_jb6in")
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RetryButton" type="TextureButton" parent="." unique_id=1545384826]
+offset_left = 539.00006
+offset_top = 401.0
+offset_right = 1139.0
+offset_bottom = 1001.0
+scale = Vector2(0.12, 0.12)
+texture_normal = ExtResource("2_kk8k2")
+texture_pressed = ExtResource("3_e5yba")
+texture_hover = ExtResource("4_ladg1")
+texture_disabled = ExtResource("2_kk8k2")
+texture_focused = ExtResource("4_ladg1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=517645565]
+stream = ExtResource("6_ladg1")
+
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
