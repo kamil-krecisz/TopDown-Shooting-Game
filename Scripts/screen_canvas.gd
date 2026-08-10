@@ -35,3 +35,8 @@ func _on_pause_menu_upgrade_bought(cost: int, _upgrade_strength: float, time):
 	$TimeLeftBar/Timer.wait_time = time
 	$TimeLeftBar.visible = true
 	$TimeLeftBar/Timer.start()
+
+
+func _on_which_wave(which: int):
+	$WaveIdentifier.visible = true
+	$WaveIdentifier/WaveLabel.text = "WAVE: " + str(which)

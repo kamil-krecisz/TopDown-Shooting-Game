@@ -45,7 +45,7 @@ func _on_attack_body_entered(body):
 	elif body.is_in_group("player") && can_attack == false:
 		can_attack = true
 func attack(body):
-	body.take_damage(7.5)
+	body.take_damage(10)
 	await get_tree().create_timer(2).timeout
 	_on_attack_body_entered(body)
 

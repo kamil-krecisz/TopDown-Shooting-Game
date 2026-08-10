@@ -9,7 +9,7 @@ var upgraded_speed = 1
 
 @export var stamina = 100.0
 @export var health = 100.0
-var health_regeneration = 1.5
+var health_regeneration = 1.0
 var sprint_value = 1
 var can_sprint = true
 signal stamina_change(new_stamina_value)
@@ -88,5 +88,4 @@ func _on_pause_menu_upgrade_bought(_cost: int, upgrade_strength: float, time):
 
 
 func _on_upgrade_timer_timeout():
-	print("end")
 	upgraded_speed = 1

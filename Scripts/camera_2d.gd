@@ -21,5 +21,4 @@ func randomOffset():
 
 
 func _on_player_taking_damage():
-	print(rng.randf_range(-shake_strength,shake_strength))
 	apply_shake()

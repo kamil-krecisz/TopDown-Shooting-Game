@@ -58,7 +58,6 @@ func shop_state(state: String):
 
 func _on_resume_button_pressed():
 	audio_player.play()
-	#await get_tree().create_timer(0.05).timeout
 	resume()
 
 
@@ -91,7 +90,7 @@ func _on_buy_pressed():
 	audio_player.play()
 	if money >= 500:
 		money -= 500
-		upgrade_bought.emit(500, 2, 60)
+		upgrade_bought.emit(500, 1.6, 60)
 	elif money < 500:
 		$ShopPanel/KotletLabel/NomLabel.visible = true
 		animation_player.play("NomFade")

@@ -4,15 +4,54 @@
 [ext_resource type="Script" uid="uid://bcbji3ymhh0yk" path="res://Scripts/screen_canvas.gd" id="2_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://dq1gy3mrguy0p" path="res://Scenes/player.tscn" id="2_rgh2o"]
 [ext_resource type="Script" uid="uid://dvcmuscfrraou" path="res://Scripts/camera_2d.gd" id="2_v1gob"]
-[ext_resource type="PackedScene" uid="uid://qg0mt48njdla" path="res://Scenes/enemy.tscn" id="4_rgh2o"]
 [ext_resource type="FontFile" uid="uid://d22lpv7e76hh4" path="res://Fonts/upheavtt.ttf" id="4_v1gob"]
 [ext_resource type="PackedScene" uid="uid://cdafinrff8bx2" path="res://Scenes/pause_menu.tscn" id="7_jw32o"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw32o"]
+bg_color = Color(0.19, 0.19, 0.19, 0.3137255)
+
 [sub_resource type="Curve2D" id="Curve2D_rgh2o"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1125, 10, 0, 0, 0, 0, 1125, 600)
+"points": PackedVector2Array(0, 0, 0, 0, 1125, 10, 0, 0, 0, 0, 1125, 600, 0, 0, 0, 0, 1124, 638, 0, 0, 0, 0, 6, 644, 0, 0, 0, 0, 16, 21, 0, 0, 0, 0, 1121, 12)
 }
-point_count = 2
+point_count = 6
+
+[sub_resource type="Animation" id="Animation_jw32o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenCanvas/WaveIdentifier:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_50glp"]
+resource_name = "WaveIdentifierAni"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenCanvas/WaveIdentifier:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 2.3, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
+_data = {
+&"RESET": SubResource("Animation_jw32o"),
+&"WaveIdentifierAni": SubResource("Animation_50glp")
+}
 
 [node name="Main" type="Node2D" unique_id=1941816599]
 script = ExtResource("1_kln2b")
@@ -53,7 +92,23 @@ offset_bottom = 89.0
 value = 50.0
 show_percentage = false
 
-[node name="pause_menu" parent="ScreenCanvas" unique_id=1636271020 instance=ExtResource("7_jw32o")]
+[node name="WaveIdentifier" type="Panel" parent="ScreenCanvas" unique_id=2012267241]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jw32o")
+
+[node name="WaveLabel" type="Label" parent="ScreenCanvas/WaveIdentifier" unique_id=1662791303]
+texture_filter = 1
+layout_mode = 0
+offset_left = 444.0
+offset_top = 288.0
+offset_right = 708.0
+offset_bottom = 360.0
+theme_override_fonts/font = ExtResource("4_v1gob")
+theme_override_font_sizes/font_size = 80
+text = "WAVE: 1"
+horizontal_alignment = 1
 
 [node name="TimeLeftBar" type="ProgressBar" parent="ScreenCanvas" unique_id=1184410977]
 visible = false
@@ -68,14 +123,14 @@ show_percentage = false
 [node name="Timer" type="Timer" parent="ScreenCanvas/TimeLeftBar" unique_id=1916328970]
 one_shot = true
 
+[node name="pause_menu" parent="ScreenCanvas" unique_id=1636271020 instance=ExtResource("7_jw32o")]
+visible = false
+
 [node name="Player" parent="." unique_id=708830804 instance=ExtResource("2_rgh2o")]
 position = Vector2(455, 326)
 
 [node name="Muzzle" type="Node2D" parent="Player" unique_id=1131494565]
 position = Vector2(23, 0)
-
-[node name="Enemy" parent="." unique_id=1528413759 groups=["enemy"] instance=ExtResource("4_rgh2o")]
-position = Vector2(795, 317)
 
 [node name="SpawnPath" type="Path2D" parent="." unique_id=738420175]
 curve = SubResource("Curve2D_rgh2o")
@@ -84,15 +139,13 @@ curve = SubResource("Curve2D_rgh2o")
 position = Vector2(1125, 10)
 rotation = 1.5707964
 
-[node name="MobSpawnTimer" type="Timer" parent="." unique_id=595328825]
-wait_time = 3.0
-autostart = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1489567010]
+libraries/ = SubResource("AnimationLibrary_vy5pj")
 
+[connection signal="which_wave" from="." to="ScreenCanvas" method="_on_which_wave"]
 [connection signal="upgrade_bought" from="ScreenCanvas/pause_menu" to="ScreenCanvas" method="_on_pause_menu_upgrade_bought"]
 [connection signal="upgrade_bought" from="ScreenCanvas/pause_menu" to="Player" method="_on_pause_menu_upgrade_bought"]
 [connection signal="health_change" from="Player" to="ScreenCanvas" method="_on_player_health_change"]
 [connection signal="stamina_change" from="Player" to="ScreenCanvas" method="_on_player_stamina_change"]
 [connection signal="stamina_change" from="Player" to="ScreenCanvas/StaminaBar" method="_on_player_stamina_change"]
 [connection signal="taking_damage_shake" from="Player" to="Camera2D" method="_on_player_taking_damage"]
-[connection signal="on_death" from="Enemy" to="ScreenCanvas" method="_on_enemy_death"]
-[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
