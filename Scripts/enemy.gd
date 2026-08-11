@@ -4,9 +4,9 @@ extends CharacterBody2D
 
 var player
 var direction
-var speed = 6500.0
+var speed = 7500.0
 var health = 100
-@export var worth = 100
+@export var worth = 25
 
 var can_attack = true
 
@@ -27,11 +27,12 @@ func _physics_process(delta):
 	health_bar.value = health
 	if health < 100:
 		health_bar.visible = true
-	if health == 0:
+	if health <= 0:
 		on_death.emit(worth)
 		queue_free()
-
 	
+	
+	$Sprite2D.rotation = (player.global_position - global_position).angle() # rotating enemy's sprite so that it faces the player
 	
 	direction = player.global_position - global_position
 	velocity = direction.normalized() * delta * speed

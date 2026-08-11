@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cv3oqsd8a5062" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ckoj3k8l55nqe" path="res://Sprites/icon.svg" id="2_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://brsri0hdps3wf" path="res://Sounds/damage_sound.mp3" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://cnq02t1oep4cy" path="res://Sounds/gun_shot.mp3" id="4_vgqql"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fu8ta"]
 radius = 15.0
@@ -22,5 +23,10 @@ stream = ExtResource("3_6t5aa")
 pitch_scale = 1.3
 
 [node name="UpgradeTimer" type="Timer" parent="." unique_id=318134046]
+
+[node name="GunAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=993046863]
+stream = ExtResource("4_vgqql")
+volume_db = -20.0
+pitch_scale = 2.5
 
 [connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]

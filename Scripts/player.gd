@@ -63,6 +63,7 @@ func _physics_process(delta):
 		b = Bullet.instantiate()
 		get_tree().root.add_child(b)
 		b.start($Muzzle.global_position, mouse_position.angle())
+		$GunAudioPlayer.play()
 	
 	
 	
