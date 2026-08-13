@@ -5,6 +5,7 @@ extends CharacterBody2D
 var player
 var direction
 var speed = 7500.0
+var rotation_speed = 3.5
 var health = 100
 @export var worth = 25
 
@@ -17,7 +18,9 @@ func initialize(starting_position):
 	
 
 
-
+func take_damage(value: int):
+	health -= value
+	$AudioPlayer.play()
 
 func _ready():
 	
@@ -32,7 +35,7 @@ func _physics_process(delta):
 		queue_free()
 	
 	
-	$Sprite2D.rotation = (player.global_position - global_position).angle() # rotating enemy's sprite so that it faces the player
+	$Sprite2D.rotation = lerp_angle($Sprite2D.rotation ,(player.global_position - global_position).angle(), rotation_speed*delta) # rotating enemy's sprite so that it faces the player
 	
 	direction = player.global_position - global_position
 	velocity = direction.normalized() * delta * speed

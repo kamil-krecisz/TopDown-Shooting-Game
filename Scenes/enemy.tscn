@@ -1,24 +1,28 @@
 [gd_scene format=3 uid="uid://qg0mt48njdla"]
 
 [ext_resource type="Script" uid="uid://befo3sogctt0e" path="res://Scripts/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://7u23ytwvaas0" path="res://Sprites/enemy.png" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://d7oo4ol03g10" path="res://Sprites/Enemy.png" id="2_1f0kj"]
+[ext_resource type="AudioStream" uid="uid://lp0sgvsfrhlk" path="res://Sounds/enemy_sound.mp3" id="3_afpow"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mayyj"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm2uw"]
+radius = 11.0
+height = 42.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fu8ta"]
-radius = 18.027756
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cn0na"]
+radius = 18.0
+height = 42.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1528413759]
 script = ExtResource("1_1f0kj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1724002586]
-position = Vector2(9.536743e-07, 0)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("1_7k104")
+texture_filter = 1
+scale = Vector2(0.78583324, 0.78583324)
+texture = ExtResource("2_1f0kj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=345523136]
-shape = SubResource("CircleShape2D_mayyj")
+position = Vector2(-5, 0)
+shape = SubResource("CapsuleShape2D_bm2uw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=408426545]
 
@@ -26,19 +30,24 @@ shape = SubResource("CircleShape2D_mayyj")
 visible = false
 modulate = Color(0.13509652, 0.9602726, 0, 1)
 offset_left = -13.0
-offset_top = -24.0
+offset_top = -33.0
 offset_right = 13.0
-offset_bottom = -19.0
+offset_bottom = -28.0
 value = 50.0
 show_percentage = false
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=1361335141]
 
 [node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRange" unique_id=933063922]
-shape = SubResource("CircleShape2D_fu8ta")
+position = Vector2(8, 0)
+shape = SubResource("CapsuleShape2D_cn0na")
 debug_color = Color(0.75417024, 0.18620193, 0.42151955, 0.15686275)
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=199059807]
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1493109984]
+stream = ExtResource("3_afpow")
+pitch_scale = 0.6
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_body_exited"]

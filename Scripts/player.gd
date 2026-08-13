@@ -5,13 +5,16 @@ extends CharacterBody2D
 var Bullet = preload("res://Scenes/bullet.tscn")
 var mouse_position: Vector2
 @export var speed = 20000.0
+var sprint_value = 1
+var can_sprint = true
 var upgraded_speed = 1
 
 @export var stamina = 100.0
 @export var health = 100.0
 var health_regeneration = 1.0
-var sprint_value = 1
-var can_sprint = true
+
+var rotation_speed : float = 7.0
+
 signal stamina_change(new_stamina_value)
 signal health_change(new_health_value)
 signal taking_damage_shake()
@@ -35,7 +38,7 @@ func _ready():
 
 func _physics_process(delta):
 	mouse_position = get_global_mouse_position() - global_position
-	rotation = mouse_position.angle()
+	rotation = lerp_angle(rotation, mouse_position.angle(), rotation_speed * delta) # Smooth rotation of the player
 	character_direction.y = Input.get_axis("W_down","S_down")
 	character_direction.x = Input.get_axis("A_down","D_down")
 	character_direction = character_direction.normalized()

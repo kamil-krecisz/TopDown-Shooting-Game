@@ -1,22 +1,26 @@
 [gd_scene format=3 uid="uid://dq1gy3mrguy0p"]
 
 [ext_resource type="Script" uid="uid://cv3oqsd8a5062" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://ckoj3k8l55nqe" path="res://Sprites/icon.svg" id="2_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://cistvj1nk8dq2" path="res://Sprites/Player.png" id="2_vgqql"]
 [ext_resource type="AudioStream" uid="uid://brsri0hdps3wf" path="res://Sounds/damage_sound.mp3" id="3_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://cnq02t1oep4cy" path="res://Sounds/gun_shot.mp3" id="4_vgqql"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fu8ta"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80d1q"]
+radius = 14.0
+height = 48.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1170544757 groups=["player"]]
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=510316286]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_6t5aa")
+texture_filter = 1
+position = Vector2(4.7683716e-07, 0)
+scale = Vector2(0.7864583, 0.7864584)
+texture = ExtResource("2_vgqql")
+offset = Vector2(5, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=429792772]
-shape = SubResource("CircleShape2D_fu8ta")
+shape = SubResource("CapsuleShape2D_80d1q")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=931114292]
 stream = ExtResource("3_6t5aa")
