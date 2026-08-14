@@ -12,9 +12,9 @@ bg_color = Color(0.19, 0.19, 0.19, 0.3137255)
 
 [sub_resource type="Curve2D" id="Curve2D_rgh2o"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1125, 10, 0, 0, 0, 0, 1125, 600, 0, 0, 0, 0, 1124, 638, 0, 0, 0, 0, 6, 644, 0, 0, 0, 0, 16, 21, 0, 0, 0, 0, 1121, 12)
+"points": PackedVector2Array(0, 0, 0, 0, 17, 699, 0, 0, 0, 0, 1260, 701, 0, 0, 0, 0, 1265, 11, 0, 0, 0, 0, 19, 13, 0, 0, 0, 0, 17, 699)
 }
-point_count = 6
+point_count = 5
 
 [sub_resource type="Animation" id="Animation_jw32o"]
 length = 0.001
@@ -53,11 +53,22 @@ _data = {
 &"WaveIdentifierAni": SubResource("Animation_50glp")
 }
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tw308"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v1gob"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_007ni"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jw32o"]
+normal = Vector2(-1, 0)
+
 [node name="Main" type="Node2D" unique_id=1941816599]
 script = ExtResource("1_kln2b")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1522785518]
-position = Vector2(576, 324)
+position = Vector2(640, 360)
 script = ExtResource("2_v1gob")
 
 [node name="ScreenCanvas" type="CanvasLayer" parent="." unique_id=975740405]
@@ -94,17 +105,17 @@ show_percentage = false
 
 [node name="WaveIdentifier" type="Panel" parent="ScreenCanvas" unique_id=2012267241]
 visible = false
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1280.0
+offset_bottom = 720.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_jw32o")
 
 [node name="WaveLabel" type="Label" parent="ScreenCanvas/WaveIdentifier" unique_id=1662791303]
 texture_filter = 1
 layout_mode = 0
-offset_left = 444.0
-offset_top = 288.0
-offset_right = 708.0
-offset_bottom = 360.0
+offset_left = 508.0
+offset_top = 324.0
+offset_right = 772.0
+offset_bottom = 396.0
 theme_override_fonts/font = ExtResource("4_v1gob")
 theme_override_font_sizes/font_size = 80
 text = "WAVE: 1"
@@ -136,11 +147,29 @@ position = Vector2(23, 0)
 curve = SubResource("Curve2D_rgh2o")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath" unique_id=2102966019]
-position = Vector2(1125, 10)
-rotation = 1.5707964
+position = Vector2(17, 699)
+rotation = 0.001609009
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1489567010]
 libraries/ = SubResource("AnimationLibrary_vy5pj")
+
+[node name="Border" type="StaticBody2D" parent="." unique_id=1617827959]
+
+[node name="TopBorder" type="CollisionShape2D" parent="Border" unique_id=2119394592]
+position = Vector2(640, 0)
+shape = SubResource("WorldBoundaryShape2D_tw308")
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Border" unique_id=1525905210]
+position = Vector2(640, 720)
+shape = SubResource("WorldBoundaryShape2D_v1gob")
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Border" unique_id=397608717]
+position = Vector2(0, 360)
+shape = SubResource("WorldBoundaryShape2D_007ni")
+
+[node name="RightBorder" type="CollisionShape2D" parent="Border" unique_id=1193341593]
+position = Vector2(1280, 360)
+shape = SubResource("WorldBoundaryShape2D_jw32o")
 
 [connection signal="which_wave" from="." to="ScreenCanvas" method="_on_which_wave"]
 [connection signal="upgrade_bought" from="ScreenCanvas/pause_menu" to="ScreenCanvas" method="_on_pause_menu_upgrade_bought"]

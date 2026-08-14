@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 
 var Bullet = preload("res://Scenes/bullet.tscn")
+var can_shoot = true
+
 var mouse_position: Vector2
 @export var speed = 20000.0
 var sprint_value = 1
@@ -62,15 +64,14 @@ func _physics_process(delta):
 	if character_direction != Vector2.ZERO:
 		velocity = character_direction * speed * delta * sprint_value * upgraded_speed
 		
-	if Input.is_action_just_pressed("left_down"): #SHOOTING
+	if Input.is_action_just_pressed("left_down") && can_shoot == true: #SHOOTING
 		b = Bullet.instantiate()
 		get_tree().root.add_child(b)
 		b.start($Muzzle.global_position, mouse_position.angle())
 		$GunAudioPlayer.play()
-	
-	
-	
-	
+		can_shoot = false
+		$ShootingTimer.start()
+
 	
 	
 	
@@ -95,3 +96,7 @@ func _on_pause_menu_upgrade_bought(_cost: int, upgrade_strength: float, time):
 
 func _on_upgrade_timer_timeout():
 	upgraded_speed = 1
+
+
+func _on_shooting_timer_timeout():
+	can_shoot = true

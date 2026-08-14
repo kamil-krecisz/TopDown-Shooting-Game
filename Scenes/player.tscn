@@ -33,4 +33,9 @@ stream = ExtResource("4_vgqql")
 volume_db = -20.0
 pitch_scale = 2.5
 
+[node name="ShootingTimer" type="Timer" parent="." unique_id=1881150490]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]
+[connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]

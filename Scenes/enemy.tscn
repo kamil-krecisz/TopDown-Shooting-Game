@@ -27,11 +27,10 @@ shape = SubResource("CapsuleShape2D_bm2uw")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=408426545]
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=677013006]
-visible = false
 modulate = Color(0.13509652, 0.9602726, 0, 1)
-offset_left = -13.0
+offset_left = -20.0
 offset_top = -33.0
-offset_right = 13.0
+offset_right = 20.0
 offset_bottom = -28.0
 value = 50.0
 show_percentage = false
@@ -48,6 +47,15 @@ debug_color = Color(0.75417024, 0.18620193, 0.42151955, 0.15686275)
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1493109984]
 stream = ExtResource("3_afpow")
 pitch_scale = 0.6
+
+[node name="Label" type="Label" parent="." unique_id=737147813]
+visible = false
+offset_left = -17.0
+offset_top = -107.0
+offset_right = 10.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 100
+text = ","
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_body_exited"]

@@ -304,10 +304,10 @@ offset_bottom = 648.0
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=690258889]
 modulate = Color(1, 1, 1, 0)
-offset_left = 414.0
-offset_top = 144.0
-offset_right = 738.0
-offset_bottom = 504.0
+offset_left = 478.0
+offset_top = 180.0
+offset_right = 802.0
+offset_bottom = 540.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpi0q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1204050990]
@@ -350,9 +350,9 @@ text = "Exit"
 
 [node name="ShopButton" type="Button" parent="." unique_id=459652275]
 texture_filter = 1
-offset_left = 748.0
+offset_left = 808.0
 offset_top = 20.0
-offset_right = 829.0
+offset_right = 889.0
 offset_bottom = 55.0
 theme_override_fonts/font = ExtResource("3_1och7")
 theme_override_font_sizes/font_size = 28
@@ -363,10 +363,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_taale")
 text = "Shop"
 
 [node name="ShopPanel" type="Panel" parent="." unique_id=1594414099]
-offset_left = 858.0
-offset_top = 89.0
-offset_right = 1088.0
-offset_bottom = 389.0
+visible = false
+offset_left = 914.0
+offset_top = 122.0
+offset_right = 1144.0
+offset_bottom = 422.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q7fiq")
 
 [node name="ShopLabel" type="Label" parent="ShopPanel" unique_id=599246348]
