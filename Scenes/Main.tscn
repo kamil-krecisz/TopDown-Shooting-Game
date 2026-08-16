@@ -138,7 +138,7 @@ one_shot = true
 visible = false
 
 [node name="Player" parent="." unique_id=708830804 instance=ExtResource("2_rgh2o")]
-position = Vector2(455, 326)
+position = Vector2(640, 360)
 
 [node name="Muzzle" type="Node2D" parent="Player" unique_id=1131494565]
 position = Vector2(23, 0)
