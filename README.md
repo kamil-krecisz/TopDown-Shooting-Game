@@ -1,6 +1,10 @@
-# 🧟 Wave Shooter 2D
+# 🧟 Top Down Shooter 2D
 
 A top-down 2D zombie wave survival game made in Godot. Shoot zombies, get cash, buy upgrades, and try not to die.
+
+---
+
+📦 **[Download Desktop Build (GitHub Releases)](https://github.com/kamil-krecisz/TopDown-Shooting-Game/releases)**
 
 ---
 
