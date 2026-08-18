@@ -37,6 +37,7 @@ func _physics_process(delta):
 	
 	$Sprite2D.rotation = lerp_angle($Sprite2D.rotation ,(player.global_position - global_position).angle(), rotation_speed*delta) # rotating enemy's sprite so that it faces the player
 	
+	
 	direction = player.global_position - global_position
 	velocity = direction.normalized() * delta * speed
 	
